@@ -13,6 +13,7 @@ import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.commands.Drive;
+import frc.robot.subsystems.Climber;
 import frc.robot.subsystems.Drivetrain;
 import frc.robot.subsystems.Shooter;
 
@@ -24,8 +25,9 @@ import frc.robot.subsystems.Shooter;
  * project.
  */
 public class Robot extends TimedRobot {
-  public static Drivetrain m_drivetrain = new Drivetrain();
-  public static Shooter m_shooter = new Shooter();
+  public static Drivetrain m_drivetrain;
+  public static Shooter m_shooter;
+  public static Climber m_climber;
   public static OI m_oi;
 
   Command m_autonomousCommand;
@@ -37,7 +39,12 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void robotInit() {
+    m_shooter = new Shooter();
+    m_drivetrain = new Drivetrain();
+    m_climber = new Climber();
     m_oi = new OI();
+
+
     m_chooser.setDefaultOption("Default Auto", new Drive());
     // chooser.addOption("My Auto", new MyAutoCommand());
     SmartDashboard.putData("Auto mode", m_chooser);
