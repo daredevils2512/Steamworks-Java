@@ -8,8 +8,9 @@
 package frc.robot.subsystems;
 
 import edu.wpi.first.wpilibj.command.Subsystem;
+import frc.robot.RobotMap;
 import edu.wpi.first.wpilibj.*;
-
+import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 import com.ctre.phoenix.motorcontrol.can.*;
 
 /**
@@ -24,17 +25,31 @@ public class Drivetrain extends Subsystem {
   private WPI_TalonSRX rightRearTalon;
   private WPI_TalonSRX leftTalon;
   private WPI_TalonSRX leftRearTalon;
+  private SpeedControllerGroup leftGroup;
+  private SpeedControllerGroup rightGroup;  
+  private static DifferentialDrive drivetrain;
 
   public Drivetrain() {
-    rightTalon = new WPI_TalonSRX(1);
-    rightTalon = new WPI_TalonSRX(1);
-    rightTalon = new WPI_TalonSRX(1);
-    rightTalon = new WPI_TalonSRX(1);
+    rightTalon = new WPI_TalonSRX(RobotMap.rightTalonID);
+    rightRearTalon = new WPI_TalonSRX(RobotMap.rightRearTalonID);
+    leftTalon = new WPI_TalonSRX(RobotMap.leftTalonID);
+    leftRearTalon = new WPI_TalonSRX(RobotMap.leftRearTalonID);
+
+    rightGroup = new SpeedControllerGroup(rightTalon, rightRearTalon);
+    leftGroup = new SpeedControllerGroup(leftTalon, leftRearTalon);
+
+    drivetrain = new DifferentialDrive(leftGroup, rightGroup);
   }
 
   @Override
   public void initDefaultCommand() {
     // Set the default command for a subsystem here.
     // setDefaultCommand(new MySpecialCommand());
+  }
+
+  public void arcadeDrive(double forward, double turn) {
+
+    drivetrain.arcadeDrive(forward, turn);
+    
   }
 }
