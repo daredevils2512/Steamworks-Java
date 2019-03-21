@@ -24,6 +24,7 @@ import frc.robot.subsystems.Drivetrain;
  */
 public class Robot extends TimedRobot {
   public static Drivetrain m_drivetrain = new Drivetrain();
+  public static Shooter m_shooter = new Shooter();
   public static OI m_oi;
 
   Command m_autonomousCommand;
