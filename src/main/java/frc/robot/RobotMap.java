@@ -29,4 +29,6 @@ public class RobotMap {
   public static int leftTalonID = 4;
   public static int leftRearTalonID = 1;
 
+  public static int shifterForward = 4;
+  public static int shifterReverse = 5;
 }
