@@ -7,36 +7,75 @@
 
 package frc.robot;
 
+import frc.robot.TriggerButton;
+import frc.robot.commands.*;
+
+import edu.wpi.first.wpilibj.Joystick;
+import edu.wpi.first.wpilibj.buttons.Button;
+import edu.wpi.first.wpilibj.buttons.JoystickButton;
+
 /**
  * This class is the glue that binds the controls on the physical operator
  * interface to the commands and command groups that allow control of the robot.
  */
 public class OI {
-  //// CREATING BUTTONS
-  // One type of button is a joystick button which is any button on a
-  //// joystick.
-  // You create one by telling it which joystick it's on and which button
-  // number it is.
-  // Joystick stick = new Joystick(port);
-  // Button button = new JoystickButton(stick, buttonNumber);
 
-  // There are a few additional built in buttons you can use. Additionally,
-  // by subclassing Button you can create custom triggers and bind those to
-  // commands the same as any other Button.
+  private int driverPort = 0;
+  private int coDriverPort = 1;
+  private int buttonBoxPort = 2;
+  //Joysticks
+  public Joystick driver = new Joystick(this.driverPort);
+  public Joystick coDriver = new Joystick(this.coDriverPort);
+  public Joystick buttonBox = new Joystick(this.buttonBoxPort);
 
-  //// TRIGGERING COMMANDS WITH BUTTONS
-  // Once you have a button, it's trivial to bind it to a button in one of
-  // three ways:
+  //All buttons
+  Button aButton = new JoystickButton(driver, 1);
+  Button bButton = new JoystickButton(driver, 2);
+  Button xButton = new JoystickButton(driver, 3);
+  Button yButton = new JoystickButton(driver, 4);
+  Button leftBumper = new JoystickButton(driver, 5);
+  Button rightBumper = new JoystickButton(driver, 6);
+  Button select = new JoystickButton(driver, 7);
+  Button start = new JoystickButton(driver, 8);
+  Button leftStick = new JoystickButton(driver, 9);
+  Button rightStick = new JoystickButton(driver, 10);
+  TriggerButton leftTrigger = new TriggerButton(driver, 2);
+  TriggerButton rightTrigger = new TriggerButton(driver, 3);
 
-  // Start the command when the button is pressed and let it run the command
-  // until it is finished as determined by it's isFinished method.
-  // button.whenPressed(new ExampleCommand());
+  Button triggerBoi = new JoystickButton(coDriver, 1);
+  Button sideButton = new JoystickButton(coDriver, 2);
+  Button bottomLeft = new JoystickButton(coDriver, 3);
+  Button bottomRight = new JoystickButton(coDriver, 4);
+  Button topLeft = new JoystickButton(coDriver, 5);
+  Button topRight = new JoystickButton(coDriver, 6);
+  Button frontLeft = new JoystickButton(coDriver, 7);
+  Button frontRight = new JoystickButton(coDriver, 8);
+  Button midLeft = new JoystickButton(coDriver, 9);
+  Button midRight = new JoystickButton(coDriver, 10);
+  Button backLeft = new JoystickButton(coDriver, 11);
+  Button backRight = new JoystickButton(coDriver, 12);
 
-  // Run the command while the button is being held down and interrupt it once
-  // the button is released.
-  // button.whileHeld(new ExampleCommand());
+  public OI() {
+    
+  }
 
-  // Start the command when the button is released and let it run the command
-  // until it is finished as determined by it's isFinished method.
-  // button.whenReleased(new ExampleCommand());
+  public double desensitize(double val) {
+    double result = val;
+    if (Math.abs(result) < 0.15) {
+			result = 0.0;
+		}
+		return result;
+  }
+
+  public Double getMove() {
+    return desensitize(driver.getRawAxis(1));
+  }
+
+  public Double getTurn() {
+    return desensitize(-driver.getRawAxis(4));
+  }
+
+  public double getTurretControl() {
+    return desensitize(coDriver.getRawAxis(2));
+  }
 }

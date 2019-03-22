@@ -33,4 +33,12 @@ public class RobotMap {
   public static int shooterHoodForward = 1;
   public static int shooterHoodReverse = 0;
 
+  
+  public static int rightTalonID = 9;
+  public static int rightRearTalonID = 2;
+  public static int leftTalonID = 4;
+  public static int leftRearTalonID = 1;
+
+  public static int shifterForward = 4;
+  public static int shifterReverse = 5;
 }
