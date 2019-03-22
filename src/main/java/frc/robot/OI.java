@@ -56,8 +56,7 @@ public class OI {
   Button backRight = new JoystickButton(coDriver, 12);
 
   public OI() {
-    rightTrigger.whileHeld(new ShiftDown());
-    rightTrigger.whenReleased(new ShiftUp());
+    
   }
 
   public double desensitize(double val) {
