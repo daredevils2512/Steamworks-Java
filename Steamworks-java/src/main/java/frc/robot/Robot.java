@@ -27,6 +27,7 @@ public class Robot extends TimedRobot {
   public static Shooter m_shooter;
   public static Climber m_climber;
   public static Gear m_gear;
+  public static FloorIntake m_Floorintake;
   public static OI m_oi;
 
   Command m_autonomousCommand;
@@ -42,6 +43,7 @@ public class Robot extends TimedRobot {
     m_drivetrain = new Drivetrain();
     m_climber = new Climber();
     m_gear = new Gear();
+    m_Floorintake = new FloorIntake();
     m_oi = new OI();
 
 
