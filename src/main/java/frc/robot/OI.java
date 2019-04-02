@@ -23,12 +23,6 @@ public class OI {
   private int driverPort = 0;
   private int coDriverPort = 1;
   private int buttonBoxPort = 2;
-
-  private int moveAxis = 1;
-  private int turnAxis = 4;
-  private int turretAxis = 2;
-  private int throttleAxis = 5;
-
   //Joysticks
   public Joystick driver = new Joystick(this.driverPort);
   public Joystick coDriver = new Joystick(this.coDriverPort);
@@ -62,7 +56,8 @@ public class OI {
   Button backRight = new JoystickButton(coDriver, 12);
 
   public OI() {
-    
+    rightTrigger.whileHeld(new ShiftDown());
+    rightTrigger.whenReleased(new ShiftUp());
   }
 
   public double desensitize(double val) {
@@ -74,21 +69,14 @@ public class OI {
   }
 
   public Double getMove() {
-    return desensitize(driver.getRawAxis(moveAxis));
+    return desensitize(driver.getRawAxis(1));
   }
 
   public Double getTurn() {
-    return desensitize(-driver.getRawAxis(turnAxis));
+    return desensitize(-driver.getRawAxis(4));
   }
 
   public double getTurretControl() {
-    return desensitize(coDriver.getRawAxis(turretAxis)) / 2;
-  }
-
-  public double getTranslatedThrottle() {
-    //getting the inverted raw value from the co-driver's throttle
-	  //changing the range -1 to 1 to the range 0 to 1 and multiplying
-	  //to get the RPM speed for the shooter flywheel
-	  return ((-(coDriver.getRawAxis(throttleAxis)) + 1) / 2) * 4600;
+    return desensitize(coDriver.getRawAxis(2));
   }
 }
