@@ -25,6 +25,10 @@ public class Shooter extends Subsystem {
         shooterSwivel.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Absolute);
     }
 
+    public void swivel(Double speed) {
+        
+    }
+
     @Override
     protected void initDefaultCommand() {
 

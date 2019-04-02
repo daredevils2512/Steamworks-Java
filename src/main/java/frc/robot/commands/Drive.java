@@ -7,16 +7,24 @@
 
 package frc.robot.commands;
 
+import java.util.function.Supplier;
+
 import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.Robot;
 
 /**
  * An example command.  You can replace me with your own command.
  */
-public class Drive extends Command {
-  public Drive() {
+public abstract class Drive extends Command {
+
+  protected double slowify = 0.75;
+  protected Supplier<Double> getLeft, getRight;
+
+  public Drive(Supplier<Double> getLeft, Supplier<Double> getRight) {
     // Use requires() here to declare subsystem dependencies
     requires(Robot.m_drivetrain);
+    this.getLeft = getLeft;
+    this.getRight = getRight;
   }
 
   // Called just before this Command runs the first time
@@ -24,15 +32,10 @@ public class Drive extends Command {
   protected void initialize() {
   }
 
-  // Called repeatedly when this Command is scheduled to run
-  @Override
-  protected void execute() {
-  }
-
   // Make this return true when this Command no longer needs to run execute()
   @Override
   protected boolean isFinished() {
-    return false;
+    return true;
   }
 
   // Called once after isFinished returns true
@@ -44,5 +47,6 @@ public class Drive extends Command {
   // subsystems is scheduled to run
   @Override
   protected void interrupted() {
+    Robot.m_drivetrain.arcadeDrive(0.0 , 0.0);
   }
 }
