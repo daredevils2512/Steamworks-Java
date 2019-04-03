@@ -26,7 +26,7 @@ public class RobotMap {
 
   public static int shooterFlywheel = 5;
   public static int shooterTurretSwivel = 6;
-  public static int shooterSpinCycle = 0;
+  public static int shooterSpinCycle = 15;
   public static int shooterBottomBooster = 7;
   public static int shooterTopBooster = 10;
 

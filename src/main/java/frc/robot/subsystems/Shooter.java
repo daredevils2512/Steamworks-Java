@@ -3,7 +3,9 @@ package frc.robot.subsystems;
 import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
+import frc.robot.Robot;
 import frc.robot.RobotMap;
+import frc.robot.commands.ManualSwivel;
 
 import com.ctre.phoenix.motorcontrol.FeedbackDevice;
 import com.ctre.phoenix.motorcontrol.can.TalonSRXPIDSetConfiguration;
@@ -25,13 +27,29 @@ public class Shooter extends Subsystem {
         shooterSwivel.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Absolute);
     }
 
-    public void swivel(Double speed) {
-        
+    public void swivel(double speed) {
+        shooterSwivel.set(speed);
+    }
+
+    public void spinCycle(Double speed) {
+        shooterSpinCycle.set(speed);
+    }
+
+    public void bottomBooster(Double speed) {
+        shooterBottomBooster.set(speed);
+    }
+
+    public void topBooster(Double speed) {
+        shooterTopBooster.set(speed);
+    }
+
+    public void flywheel(Double speed) {
+        shooterFlywheel.set(speed);
     }
 
     @Override
     protected void initDefaultCommand() {
-
+        setDefaultCommand(new ManualSwivel());
     }
 
 

@@ -42,43 +42,50 @@ public class OI {
   TriggerButton leftTrigger = new TriggerButton(driver, 2);
   TriggerButton rightTrigger = new TriggerButton(driver, 3);
 
-  // Button triggerBoi = new JoystickButton(coDriver, 1);
-  // Button sideButton = new JoystickButton(coDriver, 2);
-  // Button bottomLeft = new JoystickButton(coDriver, 3);
-  // Button bottomRight = new JoystickButton(coDriver, 4);
-  // Button topLeft = new JoystickButton(coDriver, 5);
-  // Button topRight = new JoystickButton(coDriver, 6);
-  // Button frontLeft = new JoystickButton(coDriver, 7);
-  // Button frontRight = new JoystickButton(coDriver, 8);
-  // Button midLeft = new JoystickButton(coDriver, 9);
-  // Button midRight = new JoystickButton(coDriver, 10);
-  // Button backLeft = new JoystickButton(coDriver, 11);
-  // Button backRight = new JoystickButton(coDriver, 12);
+  Button triggerBoi = new JoystickButton(coDriver, 1);
+  Button sideButton = new JoystickButton(coDriver, 2);
+  Button bottomLeft = new JoystickButton(coDriver, 3);
+  Button bottomRight = new JoystickButton(coDriver, 4);
+  Button topLeft = new JoystickButton(coDriver, 5);
+  Button topRight = new JoystickButton(coDriver, 6);
+  Button frontLeft = new JoystickButton(coDriver, 7);
+  Button frontRight = new JoystickButton(coDriver, 8);
+  Button midLeft = new JoystickButton(coDriver, 9);
+  Button midRight = new JoystickButton(coDriver, 10);
+  Button backLeft = new JoystickButton(coDriver, 11);
+  Button backRight = new JoystickButton(coDriver, 12);
 
   public OI() {
     rightTrigger.whileHeld(new ShiftDown());
     rightTrigger.whenReleased(new ShiftUp());
 
     start.whenPressed(new Compressor());
+
+    triggerBoi.whileHeld(new ManualShooter(1));
+    triggerBoi.whenReleased(new ManualShooter(0));
   }
 
-  public double desensitize(double val) {
+  public double desensitize(double val, double desensitize) {
     double result = val;
-    if (Math.abs(result) < 0.15) {
+    if (Math.abs(result) < desensitize) {
 			result = 0.0;
 		}
 		return result;
   }
 
   public Double getMove() {
-    return desensitize(-driver.getRawAxis(1));
+    return desensitize(-driver.getRawAxis(1), 0.15);
   }
 
   public Double getTurn() {
-    return desensitize(driver.getRawAxis(4));
+    return desensitize(driver.getRawAxis(4), 0.15);
   }
 
   public double getTurretControl() {
-    return desensitize(coDriver.getRawAxis(2));
+    return desensitize(coDriver.getRawAxis(2), 0.25);
+  }
+
+  public double getThrottle() {
+    return desensitize(coDriver.getRawAxis(3), 0.15);
   }
 }
