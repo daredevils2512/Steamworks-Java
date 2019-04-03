@@ -35,8 +35,8 @@ public class Drivetrain extends Subsystem {
   private static DifferentialDrive drivetrain;
 
   private DoubleSolenoid shifter;
-  private static final DoubleSolenoid.Value high = DoubleSolenoid.Value.kForward;
-  private static final DoubleSolenoid.Value low = DoubleSolenoid.Value.kReverse;
+  private static final DoubleSolenoid.Value high = DoubleSolenoid.Value.kReverse;
+  private static final DoubleSolenoid.Value low = DoubleSolenoid.Value.kForward;
 
   public Drivetrain() {
     rightTalon = new WPI_TalonSRX(RobotMap.rightTalonID);

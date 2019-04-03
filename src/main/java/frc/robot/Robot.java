@@ -15,6 +15,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 import frc.robot.commands.Drive;
 import frc.robot.subsystems.*;
+import frc.robot.subsystems.Compressorsorus;
 
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -24,6 +25,7 @@ import frc.robot.subsystems.*;
  * project.
  */
 public class Robot extends TimedRobot {
+  public static Compressorsorus m_Compressorsorus;
   public static Drivetrain m_drivetrain;
   public static Shooter m_shooter;
   public static Climber m_climber;
@@ -40,6 +42,7 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void robotInit() {
+    m_Compressorsorus = new Compressorsorus();
     m_shooter = new Shooter();
     m_drivetrain = new Drivetrain();
     m_climber = new Climber();
@@ -115,6 +118,7 @@ public class Robot extends TimedRobot {
 
   @Override
   public void teleopInit() {
+    // this.m_Compressorsorus.compressorOn();
     // This makes sure that the autonomous stops running when
     // teleop starts running. If you want the autonomous to
     // continue until interrupted by another command, remove

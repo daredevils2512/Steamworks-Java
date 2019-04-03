@@ -17,7 +17,7 @@ import frc.robot.Robot;
  */
 public abstract class Drive extends Command {
 
-  protected double slowify = 0.85;
+  protected double slowify = 1.0;
   protected Supplier<Double> getLeft, getRight;
 
   public Drive(Supplier<Double> getLeft, Supplier<Double> getRight) {
@@ -35,7 +35,7 @@ public abstract class Drive extends Command {
   // Make this return true when this Command no longer needs to run execute()
   @Override
   protected boolean isFinished() {
-    return true;
+    return false;
   }
 
   // Called once after isFinished returns true
