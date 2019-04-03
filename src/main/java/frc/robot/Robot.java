@@ -13,6 +13,10 @@ import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
+import frc.robot.commands.Drive;
+import frc.robot.subsystems.*;
+import frc.robot.subsystems.Compressorsorus;
+
 /**
  * The VM is configured to automatically run this class, and to call the
  * functions corresponding to each mode, as described in the TimedRobot
@@ -21,6 +25,12 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
  * project.
  */
 public class Robot extends TimedRobot {
+  public static Compressorsorus m_Compressorsorus;
+  public static Drivetrain m_drivetrain;
+  public static Shooter m_shooter;
+  public static Climber m_climber;
+  // public static Gear m_gear;??
+  // public static FloorIntake m_Floorintake;??
   public static OI m_oi;
 
   Command m_autonomousCommand;
@@ -32,6 +42,12 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void robotInit() {
+    m_Compressorsorus = new Compressorsorus();
+    m_shooter = new Shooter();
+    m_drivetrain = new Drivetrain();
+    m_climber = new Climber();
+    // m_gear = new Gear();??
+    // m_Floorintake = new FloorIntake();??
     m_oi = new OI();
     // m_chooser.setDefaultOption("Default Auto", new Drive());
     // chooser.addOption("My Auto", new MyAutoCommand());
@@ -102,6 +118,7 @@ public class Robot extends TimedRobot {
 
   @Override
   public void teleopInit() {
+    // this.m_Compressorsorus.compressorOn();
     // This makes sure that the autonomous stops running when
     // teleop starts running. If you want the autonomous to
     // continue until interrupted by another command, remove

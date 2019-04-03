@@ -42,21 +42,24 @@ public class OI {
   TriggerButton leftTrigger = new TriggerButton(driver, 2);
   TriggerButton rightTrigger = new TriggerButton(driver, 3);
 
-  Button triggerBoi = new JoystickButton(coDriver, 1);
-  Button sideButton = new JoystickButton(coDriver, 2);
-  Button bottomLeft = new JoystickButton(coDriver, 3);
-  Button bottomRight = new JoystickButton(coDriver, 4);
-  Button topLeft = new JoystickButton(coDriver, 5);
-  Button topRight = new JoystickButton(coDriver, 6);
-  Button frontLeft = new JoystickButton(coDriver, 7);
-  Button frontRight = new JoystickButton(coDriver, 8);
-  Button midLeft = new JoystickButton(coDriver, 9);
-  Button midRight = new JoystickButton(coDriver, 10);
-  Button backLeft = new JoystickButton(coDriver, 11);
-  Button backRight = new JoystickButton(coDriver, 12);
+  // Button triggerBoi = new JoystickButton(coDriver, 1);
+  // Button sideButton = new JoystickButton(coDriver, 2);
+  // Button bottomLeft = new JoystickButton(coDriver, 3);
+  // Button bottomRight = new JoystickButton(coDriver, 4);
+  // Button topLeft = new JoystickButton(coDriver, 5);
+  // Button topRight = new JoystickButton(coDriver, 6);
+  // Button frontLeft = new JoystickButton(coDriver, 7);
+  // Button frontRight = new JoystickButton(coDriver, 8);
+  // Button midLeft = new JoystickButton(coDriver, 9);
+  // Button midRight = new JoystickButton(coDriver, 10);
+  // Button backLeft = new JoystickButton(coDriver, 11);
+  // Button backRight = new JoystickButton(coDriver, 12);
 
   public OI() {
-    
+    rightTrigger.whileHeld(new ShiftDown());
+    rightTrigger.whenReleased(new ShiftUp());
+
+    start.whenPressed(new Compressor());
   }
 
   public double desensitize(double val) {
@@ -68,11 +71,11 @@ public class OI {
   }
 
   public Double getMove() {
-    return desensitize(driver.getRawAxis(1));
+    return desensitize(-driver.getRawAxis(1));
   }
 
   public Double getTurn() {
-    return desensitize(-driver.getRawAxis(4));
+    return desensitize(driver.getRawAxis(4));
   }
 
   public double getTurretControl() {
