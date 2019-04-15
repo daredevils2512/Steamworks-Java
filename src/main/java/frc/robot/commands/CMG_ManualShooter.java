@@ -9,12 +9,12 @@ package frc.robot.commands;
 
 import edu.wpi.first.wpilibj.command.CommandGroup;
 
-public class ManualShooter extends CommandGroup {
+public class CMG_ManualShooter extends CommandGroup {
   /**
    * Add your docs here.
    */
 
-  public ManualShooter(double speed) {
+  public CMG_ManualShooter(double speed) {
     // Add Commands here:
     // e.g. addSequential(new Command1());
     // addSequential(new Command2());

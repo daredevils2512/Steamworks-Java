@@ -61,8 +61,8 @@ public class OI {
 
     start.whenPressed(new Compressor());
 
-    triggerBoi.whileHeld(new ManualShooter(1));
-    triggerBoi.whenReleased(new ManualShooter(0));
+    triggerBoi.whileHeld(new CMG_ManualShooter(1));
+    triggerBoi.whenReleased(new CMG_ManualShooter(0));
   }
 
   public double desensitize(double val, double desensitize) {
