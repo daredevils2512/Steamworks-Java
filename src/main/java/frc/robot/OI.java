@@ -85,7 +85,8 @@ public class OI {
     return desensitize(coDriver.getRawAxis(2), 0.25);
   }
 
+  //returns 0-1?? Probably
   public double getThrottle() {
-    return desensitize(coDriver.getRawAxis(3), 0.15);
+    return ((desensitize(coDriver.getRawAxis(3), 0.15))+1)/2;
   }
 }

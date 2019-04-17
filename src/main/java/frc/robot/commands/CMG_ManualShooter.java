@@ -8,6 +8,7 @@
 package frc.robot.commands;
 
 import edu.wpi.first.wpilibj.command.CommandGroup;
+import frc.robot.Robot;
 
 public class CMG_ManualShooter extends CommandGroup {
   /**
@@ -32,8 +33,8 @@ public class CMG_ManualShooter extends CommandGroup {
     // a CommandGroup containing them would require both the chassis and the
     // arm.    
 
-
-    addSequential(new ManualFlywheel(0.75 * speed));
+    //probably works
+    addSequential(new ManualFlywheel(Robot.m_oi.getThrottle()));
     addParallel(new ManualSpinCycle(speed));
     addParallel(new ManualBoosters(speed));
 
