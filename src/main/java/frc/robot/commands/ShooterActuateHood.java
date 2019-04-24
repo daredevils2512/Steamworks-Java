@@ -7,13 +7,21 @@
 
 package frc.robot.commands;
 
+import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.Robot;
 
-public class ManualFlywheel extends Command {
-  public ManualFlywheel() {
+public class ShooterActuateHood extends Command {
+
+  DoubleSolenoid.Value m_dir;
+
+  public ShooterActuateHood() {
     // Use requires() here to declare subsystem dependencies
     // eg. requires(chassis);
+  }
+
+  public ShooterActuateHood(DoubleSolenoid.Value dir) {
+    m_dir = dir;
   }
 
   // Called just before this Command runs the first time
@@ -24,7 +32,11 @@ public class ManualFlywheel extends Command {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    Robot.m_shooter.flywheel(Robot.m_oi.getThrottle());
+    if (m_dir == null) {
+      Robot.m_shooter.actuateHood();
+    } else {
+      Robot.m_shooter.actuateHood(m_dir);
+    }
   }
 
   // Make this return true when this Command no longer needs to run execute()

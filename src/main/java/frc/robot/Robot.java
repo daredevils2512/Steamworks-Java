@@ -64,6 +64,8 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void robotPeriodic() {
+    SmartDashboard.putNumber("swivel Encoder Pos", m_shooter.getSwivelPos());
+    SmartDashboard.putNumber("throttle pos", Robot.m_oi.getThrottle());
   }
 
   /**

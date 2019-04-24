@@ -1,14 +1,15 @@
 package frc.robot.subsystems;
 
 import edu.wpi.first.wpilibj.DoubleSolenoid;
+import edu.wpi.first.wpilibj.DoubleSolenoid.Value;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
-import frc.robot.Robot;
+// import frc.robot.Robot;
 import frc.robot.RobotMap;
 import frc.robot.commands.ManualSwivel;
 
 import com.ctre.phoenix.motorcontrol.FeedbackDevice;
-import com.ctre.phoenix.motorcontrol.can.TalonSRXPIDSetConfiguration;
+// import com.ctre.phoenix.motorcontrol.can.TalonSRXPIDSetConfiguration;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 
 public class Shooter extends Subsystem {
@@ -31,6 +32,14 @@ public class Shooter extends Subsystem {
         shooterSwivel.set(speed);
     }
 
+    public int getSwivelPos() {
+        return shooterSwivel.getSelectedSensorPosition();
+    }
+
+    public void resetSwivelEncoder() {
+        shooterSwivel.setSelectedSensorPosition(0);
+    }
+
     public void spinCycle(Double speed) {
         shooterSpinCycle.set(speed);
     }
@@ -45,6 +54,20 @@ public class Shooter extends Subsystem {
 
     public void flywheel(Double speed) {
         shooterFlywheel.set(speed);
+    }
+    
+    //toggle the hood
+    public void actuateHood() {
+        if(shooterHood.get() == Value.kReverse) {
+            shooterHood.set(Value.kForward);
+        } else {
+            shooterHood.set(Value.kReverse);
+        }
+    }
+
+    //set to a value    
+    public void actuateHood(DoubleSolenoid.Value dir) {
+        shooterHood.set(dir);
     }
 
     @Override

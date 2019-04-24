@@ -10,10 +10,15 @@ package frc.robot.commands;
 import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.Robot;
 
-public class ManualFlywheel extends Command {
-  public ManualFlywheel() {
+public class ShooterFlywheel extends Command {
+
+  private double m_speed;
+
+  public ShooterFlywheel(double speed) {
     // Use requires() here to declare subsystem dependencies
     // eg. requires(chassis);
+    // requires(Robot.m_shooter);
+    m_speed = speed;
   }
 
   // Called just before this Command runs the first time
@@ -24,7 +29,7 @@ public class ManualFlywheel extends Command {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    Robot.m_shooter.flywheel(Robot.m_oi.getThrottle());
+    Robot.m_shooter.flywheel(m_speed);
   }
 
   // Make this return true when this Command no longer needs to run execute()
@@ -36,6 +41,7 @@ public class ManualFlywheel extends Command {
   // Called once after isFinished returns true
   @Override
   protected void end() {
+    // Robot.m_shooter.flywheel(0.0);
   }
 
   // Called when another command which requires one or more of the same

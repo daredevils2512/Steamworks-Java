@@ -34,8 +34,8 @@ public class CMG_ManualShooter extends CommandGroup {
     // arm.    
 
     //probably works
-    addSequential(new ManualFlywheel(Robot.m_oi.getThrottle()));
-    addParallel(new ManualSpinCycle(speed));
+    addSequential(new ManualFlywheel());
+    addParallel(new ManualSpinCycle(speed * 0.5));
     addParallel(new ManualBoosters(speed));
 
   }

@@ -63,6 +63,9 @@ public class OI {
 
     triggerBoi.whileHeld(new CMG_ManualShooter(1));
     triggerBoi.whenReleased(new CMG_ManualShooter(0));
+    sideButton.whenPressed(new ShooterActuateHood());
+
+    aButton.whenPressed(new ResetSwivelEncoder());
   }
 
   public double desensitize(double val, double desensitize) {
@@ -82,11 +85,19 @@ public class OI {
   }
 
   public double getTurretControl() {
-    return desensitize(coDriver.getRawAxis(2), 0.25);
+    if ((Robot.m_shooter.getSwivelPos() > 2500) && (coDriver.getRawAxis(2) > 0)) {
+      System.out.println("left limit reached");
+      return 0.0;
+    } else if ((Robot.m_shooter.getSwivelPos() < -2500) && (coDriver.getRawAxis(2) < 0)) {
+      System.out.println("right limit reached");
+      return 0.0;
+    } else {
+      return desensitize(coDriver.getRawAxis(2), 0.2);
+    }
   }
 
   //returns 0-1?? Probably
   public double getThrottle() {
-    return ((desensitize(coDriver.getRawAxis(3), 0.15))+1)/2;
+    return (((desensitize(coDriver.getRawAxis(3), 0.15))+1)/-2)+1;
   }
 }
